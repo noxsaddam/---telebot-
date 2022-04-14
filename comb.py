@@ -52,11 +52,14 @@ def street_flash(pull, pull_suit):
 
 
 def flash_royal(pull, pull_suit):
-    v = [i for i in range(len(pull)) if pull[i] in ("К", 'А')]
-    if flash(pull_suit):
-        check = True if [pull_suit[i] == flash(pull_suit)[0] for i in v].count(True) >= 2 else False
+    v = [i for i in range(len(pull)) if pull[i] in ['10', 'В', 'Д', 'К', 'А']]
+    if street_flash(pull, pull_suit):
+        check = [pull_suit[i] == flash(pull_suit)[0] for i in v].count(True) >= 5
+        print(pull)
+        print(pull_suit)
+        print(v)
+        print(check)
         return True if all([i in pull for i in ['10', 'В', 'Д', 'К', 'А']])\
-                       and street_flash(pull, pull_suit) \
                        and check else False
     return False
 
@@ -97,24 +100,3 @@ def combination(cards, cards_table=[]):
         return f"У тебя Пара {para(pull)[0]}"
 
     return f"Не нашел кобминаций"
-
-
-# def output_combinations():
-#     return f"Вероятность Пары: {}\nВероятность Сета: {}\nВероятность Каре: {}\nВероятность Фулл хауса: {}\n
-
-# cards = input("Карманные карты?").split()
-#
-# stage = input("Стадия игры?")
-#
-# if stage == "pref":
-#     print(para(cards)) if para(cards) else None
-# elif stage == "flop":
-#     cards_table = input("Введите 3 карты со стола").split()
-#     # cards_value = [i[:-1] for i in cards]
-#     # cards_table_value = [i[:-1] for i in cards_table]
-#     # pull = cards_value + cards_table_value
-#     print(combination(cards,cards_table))
-# elif stage == "tern":
-#     cards_table = input("Введите 4 карты со стола").split()
-#
-# print(combination(['Кч', '8ч', 'Вч', 'Дч', '9ч', '10ч', 'Ав']))
