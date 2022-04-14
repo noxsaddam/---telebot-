@@ -55,10 +55,6 @@ def flash_royal(pull, pull_suit):
     v = [i for i in range(len(pull)) if pull[i] in ['10', 'В', 'Д', 'К', 'А']]
     if street_flash(pull, pull_suit):
         check = [pull_suit[i] == flash(pull_suit)[0] for i in v].count(True) >= 5
-        print(pull)
-        print(pull_suit)
-        print(v)
-        print(check)
         return True if all([i in pull for i in ['10', 'В', 'Д', 'К', 'А']])\
                        and check else False
     return False
